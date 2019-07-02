@@ -1,0 +1,53 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+## Running simpers w/ just input files
+sp_dir <- system.file("extdata", package = "Simpers")
+x <- file.path(sp_dir, "Elementary_Mode", "iDC.txt")
+sm <- file.path(sp_dir, "Elementary_Mode", "operations.txt")
+bar <- Simpers::simpers(x, sm, generators = TRUE)
+
+
+## Alternatively, use a simplex tree directly 
+st <- simplextree::simplex_tree()
+inp_sc <- readLines(x)
+invisible(lapply(inp_sc[-1], function(si){ st$insert_simplex(as.integer(unlist(strsplit(si, " ")))) }))
+f <- filtration(st, sm)
+
+g <- igraph::graph_from_adjacency_matrix(f(0)$as_adjacency_matrix())
+coords <- igraph::layout_with_fr(g)
+
+
+animation::saveGIF({
+  layout(matrix(1:2, ncol=2))
+  for (eps in 0L:9L){
+    st <- f(eps)
+    par(mar=rep(0, 4))
+    plot(st, coords = coords[match(st$vertices, 0:13),,drop=FALSE], vertex_opt = list(cex = 3))
+    par(mar=rep(1, 4))
+    plot(bar)
+    abline(v=eps+1, col="orange")
+  }
+}, interval=2, movie.name = "persistence.gif", ani.width=960, ani.height=480)
+
+
+
+sum(sapply(wut$vertices, wut$degree))
+
+
+
+sapply(si_filt$`0`, eval)
+
+
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+

@@ -1,0 +1,17 @@
+Copy the executable here and run the following commands:
+
+Command for example with non-empty input simplicial map:
+
+"./Simpers -e true -d iDC.txt --dflag false -m operations.txt -t 0 -s pers --dim 2 --rflag false"
+
+Or simply:
+
+"./Simpers -d iDC.txt -m operations.txt"
+
+Command for example with empty input simplicial map:
+
+"./Simpers -e true -m operations_empty_domain_complex.txt -t 0 -s pers --dim 2 --rflag false"
+
+Or simply:
+
+"./Simpers -m operations_empty_domain_complex.txt"

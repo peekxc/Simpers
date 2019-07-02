@@ -1,0 +1,7 @@
+Copy the executable here and run the following commands:
+
+"./Simpers -e false -d iDC_with_annotation.txt --dflag true -n 9 -m verMapFolder -r rangeComplexFolder -t 0 -s pers --rflag true --rfile rangeComplex.txt --dim 2"
+
+Or simply:
+
+"./Simpers -e false -d iDC_with_annotation.txt --dflag true -n 9 -m verMapFolder -r rangeComplexFolder --rflag true --rfile rangeComplex.txt"
